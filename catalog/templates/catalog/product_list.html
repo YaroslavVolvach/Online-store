@@ -12,19 +12,14 @@
                                 </li>
 
                             {% for category in categories %}
-                                {%if is.category %}
+
                                     <li>
 
                                             <a href="Тут должна быть ссылка на категорию" class="list-group-item list-group-item-action "><strong>{{ category.name }}</strong></a>
 
                                     </li>
-                                {%else%}
-                                    <li>
 
-                                            <a href="Тут должна быть ссылка на категорию" class="list-group-item list-group-item-action ">{{ category.name }}</a>
 
-                                    </li>
-                                {%endif%}
                             {% endfor %}
                         </ul>
                     </div>
