@@ -10,3 +10,5 @@ def product_list(request):
 
 def product_detail(request, id):
     return render(request, 'catalog/product_detail.html', context={'product': get_object_or_404(Product, id=id)})
+
+
