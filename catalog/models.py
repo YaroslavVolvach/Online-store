@@ -1,4 +1,3 @@
-# coding=utf-8
 from django.db import models
 from django.urls import reverse
 
@@ -49,4 +48,3 @@ class ImageProduct(models.Model):
         return self.title
 
 # J = Product(image = main_photo/JACK & JONES.jpg,  name ='JACK & JONES', description ='Shirt from the Jack & Jones collection. The model is made of smooth fabric.', price = 46, url ='JACK_&_JONES')
-
