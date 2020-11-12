@@ -3,11 +3,11 @@ from django.urls import reverse
 
 
 class Category(models.Model):
-    name = models.CharField('Категория', max_length=150)
-    description = models.TextField('Описание')
+    name = models.CharField('Категория', max_length=150, unique=True)
+    description = models.TextField('Описание', blank=True)
     url = models.SlugField(verbose_name=160, unique=True)
 
-    def __str__(self):
+    def __str__ (self):
         return self.name
 
     class Meta:
@@ -16,7 +16,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    image = models.ImageField(verbose_name='Главное фото', upload_to='main_photo/')
+    image = models.ImageField(verbose_name='Главное фото', upload_to='main_photo/', blank=True)
     name = models.TextField(verbose_name='Название товара', max_length=20)
     description = models.TextField(verbose_name='Описание товара', max_length=1000)
     price = models.PositiveIntegerField(verbose_name='Стоимость')
@@ -24,7 +24,8 @@ class Product(models.Model):
     url = models.SlugField(max_length=160, unique=True)
 
     def get_absolute_url(self):
-        return reverse('product_detail', kwargs={'slug': self.url})
+        return reverse('catalog:product_detail', args=[self.id])
+        # return reverse('product_detail', kwargs={'slug': self.url})
 
     def __str__(self):
         return self.name
@@ -43,6 +44,7 @@ class ImageProduct(models.Model):
         verbose_name = 'Фото к товару'
         verbose_name_plural = 'Фотографии к товару'
 
-    def __str__(self):
+    def __str__ (self):
         return self.title
 
+# J = Product(image = main_photo/JACK & JONES.jpg,  name ='JACK & JONES', description ='Shirt from the Jack & Jones collection. The model is made of smooth fabric.', price = 46, url ='JACK_&_JONES')
