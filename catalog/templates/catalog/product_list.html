@@ -1,0 +1,62 @@
+{%extends 'catalog/base_catalog.html'%}
+
+{%block content%}
+    <div class="container-left">
+
+        <div class="row">
+                <div class="col-sm-2 mt-3 ">
+                    <div class="shadow">
+                        <ul class="list-group">
+                                <li >
+                                    <a href="/" class="list-group-item list-group-item-action list-group-item-secondary">Все категории</a>
+                                </li>
+
+                            {% for category in categories %}
+                                {%if is.category %}
+                                    <li>
+
+                                            <a href="Тут должна быть ссылка на категорию" class="list-group-item list-group-item-action "><strong>{{ category.name }}</strong></a>
+
+                                    </li>
+                                {%else%}
+                                    <li>
+
+                                            <a href="Тут должна быть ссылка на категорию" class="list-group-item list-group-item-action ">{{ category.name }}</a>
+
+                                    </li>
+                                {%endif%}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+
+
+
+
+              <div class="card-deck mt-3" style='width:100%; margin-left: auto; margin-right: -350px;'>
+                  {% for product in products %}
+
+                      <div class="col-sm-12 col-lg-3 m-1">
+
+                              <div class="card bg-light mb-3" style="max-width:rem 16;">
+                                  <img  height="100%" src="{{product.image}}"  style="width:100%;" class="card-img-top" alt="изображение продукта">
+                                  <div class="card-body" style='width:100%; height:100%;'>
+                                      <h4 class="card-title">{{product.name}}</h4>
+
+                                          <div class="row">
+                                              <div class="col-sm-8"><p>Цена:  <strong>{{product.price}} ₴</strong></p></div>
+                                              <div><p><strong>В наличии: {{product.actual}}</strong></p></div>
+                                          </div>
+
+                                      <a href="Тут должна біть ссілка на товар" class="btn btn-primary">Подробнее</a>
+                                  </div>
+                              </div>
+
+                      </div>
+                  {% endfor %}
+              </div>
+
+        </div>
+    </div>
+{%endblock%}
