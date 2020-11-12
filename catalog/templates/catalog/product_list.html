@@ -13,11 +13,13 @@
 
                             {% for category in categories %}
 
-                                <li>
+                                    <li>
 
-                                        <a href="Тут должна быть ссылка на категорию" class="list-group-item list-group-item-action "><strong>{{ category.name }}</strong></a>
+                                            <a href="Тут должна быть ссылка на категорию" class="list-group-item list-group-item-action "><strong>{{ category.name }}</strong></a>
 
-                                </li>
+                                    </li>
+
+
                             {% endfor %}
                         </ul>
                     </div>
@@ -32,16 +34,16 @@
 
                       <div class="col-sm-12 col-lg-3 m-1">
 
-                              <div class="card bg-light mb-3" style="width: 100%;">
-                                  <img  height="60%" src="{{product.image.url}}"  style="width:100%;" class="card-img-top" alt="изображение продукта">
+                              <div class="card bg-light mb-3" style="max-width:rem 16;">
+                                  <img  height="100%" src="{{product.image.url}}"  style="width:100%;" class="card-img-top" alt="изображение продукта">
                                   <div class="card-body" style='width:100%; height:100%;'>
                                       <h4 class="card-title">{{product.name}}</h4>
 
                                           <div class="row">
-                                              <div class="col-sm-8"><p>Стоимость:  <strong>{{product.price}} $</strong></p></div>
+                                              <div class="col-sm-8"><p>Price:  <strong>{{product.price}} $</strong></p></div>
                                           </div>
 
-                                      <a href="{{product.get_absolute_url}}" class="btn btn-primary">Подробнее</a>
+                                      <a href="{{product.get_absolute_url}}" class="btn btn-primary">More details</a>
                                   </div>
                               </div>
 
