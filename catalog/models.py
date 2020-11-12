@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -19,8 +20,11 @@ class Product(models.Model):
     name = models.TextField(verbose_name='Название товара', max_length=20)
     description = models.TextField(verbose_name='Описание товара', max_length=1000)
     price = models.PositiveIntegerField(verbose_name='Стоимость')
-    actual = models.BooleanField(verbose_name='В наличии', help_text='Если товар не набросок то ставить галочку')
+    actual = models.BooleanField(verbose_name='В наличии', help_text='Если товар не набросок, то ставить галочку')
     url = models.SlugField(max_length=160, unique=True)
+
+    def get_absolute_url(self):
+        return reverse('product_detail', kwargs={'slug': self.url})
 
     def __str__(self):
         return self.name
