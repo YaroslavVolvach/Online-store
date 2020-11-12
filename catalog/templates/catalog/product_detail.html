@@ -1,0 +1,56 @@
+{%extends 'catalog/base_catalog.html'%}
+
+{%block content%}
+    <div class="container-fluid" >
+            <div class="row" style="margin-bottom: 5%;">
+
+                <div class="col-sm-3">
+
+                    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+
+                            <div class="carousel-inner">
+
+                                  <div class="carousel-item active">
+                                    <img src="{{ product.image.url }}"  class="d-block w-100" alt="..." >
+                                  </div>
+
+                            </div>
+
+                    </div>
+
+
+                          <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+                          <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                          </a>
+
+
+                </div>
+
+
+                 <div class="col-sm-9">
+
+                         <h1>{{ product.name }}</h1>
+                         <p class="text-justify">{{ product.description}}</p>
+
+                                <div class="row justify-content-between">
+
+                                         <div class="col col-1">
+                                            <button type="button" value="Previous Page" class="btn btn-success pull-right" onClick="window.history.back();return false;">
+                                                 Back
+                                            </button>
+                                         </div>
+                                </div>
+
+                 </div>
+
+
+
+            </div>
+    </div>
+    
+{%endblock%}
