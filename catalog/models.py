@@ -16,16 +16,17 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    image = models.ImageField(verbose_name='Главное фото', upload_to='main_photo/', blank=True)
+    image = models.ImageField(verbose_name='Главное фото', upload_to='main_photo/')
     name = models.TextField(verbose_name='Название товара', max_length=20)
+    category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.CASCADE)
     description = models.TextField(verbose_name='Описание товара', max_length=1000)
     price = models.PositiveIntegerField(verbose_name='Стоимость')
+    count = models.PositiveIntegerField(verbose_name='Количество')
     actual = models.BooleanField(verbose_name='В наличии', help_text='Если товар не набросок, то ставить галочку')
     url = models.SlugField(max_length=160, unique=True)
 
     def get_absolute_url(self):
         return reverse('catalog:product_detail', args=[self.id])
-        # return reverse('product_detail', kwargs={'slug': self.url})
 
     def __str__(self):
         return self.name
@@ -47,4 +48,4 @@ class ImageProduct(models.Model):
     def __str__ (self):
         return self.title
 
-
+# J = Product(image = main_photo/JACK & JONES.jpg,  name ='JACK & JONES', description ='Shirt from the Jack & Jones collection. The model is made of smooth fabric.', price = 46, url ='JACK_&_JONES')
