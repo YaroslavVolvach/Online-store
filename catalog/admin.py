@@ -2,14 +2,21 @@ from django.contrib import admin
 from .models import *
 
 
-admin.site.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['title']
 
 
-@admin.register(Gallery)
-class GalleryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'product', 'image')
+admin.site.register(Category, CategoryAdmin)
 
 
-@admin.register(Product)
+class GalleryInline(admin.TabularInline):
+    fk_name = 'product'
+    model = Gallery
+
+
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('title', 'image', 'category', 'description', 'price', 'quantity', 'actual')
+    inlines = [GalleryInline, ]
+
+
+admin.site.register(Product, ProductAdmin)

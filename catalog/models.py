@@ -37,14 +37,12 @@ class Product(models.Model):
 
 
 class Gallery(models.Model):
-    title = models.TextField(verbose_name='Название', max_length=100)
-    product = models.ForeignKey(Product, verbose_name='Продукт', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, verbose_name='Продукт', on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(verbose_name='Фотография', upload_to='product_photo/')
 
     class Meta:
         verbose_name = 'Фото к товару'
         verbose_name_plural = 'Фотографии к товару'
 
-    def __str__ (self):
-        return self.title
+#python manage.py migrate --run-syncdb
 

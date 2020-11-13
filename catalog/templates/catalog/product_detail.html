@@ -4,7 +4,7 @@
     <div class="container-fluid" >
             <div class="row" style="margin-bottom: 5%;">
 
-                <div class="col-sm-3">
+                 <div class="col-sm-3">
 
                     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
 
@@ -13,6 +13,14 @@
                                   <div class="carousel-item active">
                                     <img src="{{product.image.url}}"  class="d-block w-100" alt="..." >
                                   </div>
+
+                                    {% for i in product.images.all %}
+
+                                        <div class="carousel-item">
+                                             <img src="{{i.image.url}}"  class="d-block w-100" alt="...">
+                                        </div>
+
+                                    {% endfor %}
 
                             </div>
 
@@ -25,7 +33,7 @@
                           </a>
                           <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Следующая</span>
+                            <span class="sr-only">Next</span>
                           </a>
 
 

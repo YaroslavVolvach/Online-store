@@ -5,10 +5,10 @@ from .models import *
 
 
 def product_list(request):
-    categories = Category.objects.all()
-    products = Product.objects.all()
-    return render(request, 'catalog/product_list.html',
-                  context={'categories': categories, 'products': products})
+    context = {
+        'categories': Category.objects.all(),
+        'products' : Product.objects.all()}
+    return render(request, 'catalog/product_list.html', context)
 
 
 def product_detail(request, id):
