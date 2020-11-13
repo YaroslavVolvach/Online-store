@@ -4,20 +4,33 @@
     <div class="container-left">
 
         <div class="row">
-                <div class="col-sm-2 mt-3 ">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-2 mt-3 ">
                     <div class="shadow">
                         <ul class="list-group">
+                            {%if current_category%}
                                 <li >
                                     <a href="/" class="list-group-item list-group-item-action list-group-item-secondary">Все категории</a>
                                 </li>
-
-                            {% for category in categories %}
-
-                                <li>
-
-                                        <a href="{% url 'catalog:select_category' category.id %}" class="list-group-item list-group-item-action "><strong>{{ category.name }}</strong></a>
-
+                            {%else%}
+                                <li >
+                                    <a href="/" class="list-group-item list-group-item-action list-group-item-secondary"><em><strong>Все категории</strong></em></a>
                                 </li>
+                            {%endif%}
+
+                            {% for category in categories%}
+                                {%if category == current_category%}
+                                    <li>
+
+                                            <a href="{{category.get_absolute_url}}" class="list-group-item list-group-item-action "><em><strong>{{category.title}}</strong></em></a>
+
+                                    </li>
+                                {%else%}
+                                    <li>
+
+                                            <a href="{{category.get_absolute_url}}" class="list-group-item list-group-item-action ">{{category.title}}</a>
+
+                                    </li>
+                                {%endif%}
                             {% endfor %}
                         </ul>
                     </div>
@@ -26,26 +39,36 @@
 
 
 
-
-              <div class="card-deck mt-3" style='width:100%; margin-left: auto; margin-right: -350px;'>
+            <style>
+                   #list { width:100%; margin-left: auto; margin-right: -350px }
+                   @media screen and (max-width: 990px) {
+                     #list { width:100%; margin-left: 30px; }
+                   }
+            </style>
+              <div class="card-deck mt-3" id='list'>
                   {% for product in products %}
 
                       <div class="col-sm-12 col-lg-3 m-1">
 
-                              <div class="card bg-light mb-3" style="width: 100%;">
+                              <div class="card bg-light mb-3" style="width: 80%;">
                                     <img  height="60%" src="{{product.image.url}}"  style="width:100%;" class="card-img-top" alt="изображение продукта">
                                       <div class="card-body" style='width:100%; height:100%;'>
                                           <h4 class="card-title">{{product.name}}</h4>
 
                                               <div class="row">
-                                                  <div class="col-sm-8"><p>Стоимость:  <strong>{{product.price}} $</strong></p></div>
-                                              </div>
+                                                  <div class="col-sm-5"><p>Цена: <strong>{{product.price}} ₴</strong></p></div>
+                                                  {%if product.quantity > 0 %}
+                                                        <div class="col-sm-5"><p>Количестов: <strong>{{product.quantity}}</strong></p></div>
+                                                  {%else%}
+                                                        <div class="col-sm-5"><p>Количестов: <strong>Нет в наличии</strong></p></div>
+                                                  {%endif%}
+                                                   </div>
 
-                                          <a href="{{product.get_absolute_url}}" class="btn btn-primary">Подробнее</a>
+                                          <a href="{{product.get_absolute_url}}" class="btn btn-dark">Подробнее</a>
                                       </div>
                               </div>
                       </div>
-                  {% endfor %}
+                  {%endfor%}
               </div>
 
         </div>

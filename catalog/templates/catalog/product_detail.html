@@ -11,7 +11,7 @@
                             <div class="carousel-inner">
 
                                   <div class="carousel-item active">
-                                    <img src="{{ product.image.url }}"  class="d-block w-100" alt="..." >
+                                    <img src="{{product.image.url}}"  class="d-block w-100" alt="..." >
                                   </div>
 
                             </div>
@@ -34,18 +34,18 @@
 
                  <div class="col-sm-9">
 
-                         <h1>{{ product.name }}</h1>
-                         <p class="text-justify">{{ product.description}}</p>
+                         <h1>{{product.title}}</h1>
+                         <p class="text-justify">{{product.description}}</p>
 
                                 <div class="row justify-content-between">
                                         <div class="col-md">
-                                             <a href="#" class="btn btn-primary active" role="button" aria-pressed="true">
+                                             <a href="#" class="btn btn-dark active" role="button" aria-pressed="true">
                                                  Добавить в корзину
                                              </a>
                                         </div>
 
                                          <div class="col-md">
-                                            <button type="button" value="Previous Page" class="btn btn-success pull-right" onClick="window.history.back();return false;">
+                                            <button type="button" value="Previous Page" class="btn btn-dark pull-right" onClick="window.history.back();return false;">
                                                  Назад
                                             </button>
                                          </div>
