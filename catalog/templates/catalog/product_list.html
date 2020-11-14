@@ -9,7 +9,7 @@
                         <ul class="list-group">
                             {%if current_category%}
                                 <li >
-                                    <a href="/" class="list-group-item list-group-item-action list-group-item-secondary">Все категории</a>
+                                    <a href="/" class="list-group-item list-group-item-action list-group-item">Все категории</a>
                                 </li>
                             {%else%}
                                 <li >
@@ -21,7 +21,7 @@
                                 {%if category == current_category%}
                                     <li>
 
-                                            <a href="{{category.get_absolute_url}}" class="list-group-item list-group-item-action "><em><strong>{{category.title}}</strong></em></a>
+                                            <a href="{{category.get_absolute_url}}" class="list-group-item list-group-item-secondary "><em><strong>{{category.title}}</strong></em></a>
 
                                     </li>
                                 {%else%}
@@ -56,11 +56,11 @@
                                           <h4 class="card-title">{{product.name}}</h4>
 
                                               <div class="row">
-                                                  <div class="col-sm-5"><p>Цена: <strong>{{product.price}} ₴</strong></p></div>
+                                                  <div class="col-sm-5"><p>Цена: <strong>{{product.price}} руб</strong></p></div>
                                                   {%if product.quantity > 0 %}
-                                                        <div class="col-sm-5"><p>Количестов: <strong>{{product.quantity}}</strong></p></div>
+                                                        <div class="col-sm-5"><p>Количество: <strong>{{product.quantity}}</strong></p></div>
                                                   {%else%}
-                                                        <div class="col-sm-5"><p>Количестов: <strong>Нет в наличии</strong></p></div>
+                                                        <div class="col-sm-5"><p>Количество: <strong>Нет в наличии</strong></p></div>
                                                   {%endif%}
                                                    </div>
 
