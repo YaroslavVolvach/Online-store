@@ -12,69 +12,101 @@
     <title>Интернет Магазин</title>
     <style>
         #logo{background: white}
-        #mynav{background: #212529}
-        #{background: white}
+        #mynav{background: #212529;}
 
+        #store { margin-left: 500px; }
+                   @media screen and (max-width: 1700px) {
+                     #store { margin-left: 390px; }
+
+                     @media screen and (max-width: 1650px) {
+                     #store { margin-left: 300px; }
+
+                     @media screen and (max-width: 1500px) {
+
+                     #store { margin-left: 250px; }
+
+                     @media screen and (max-width: 1300px) {
+                     #store { margin-left: 200px; }
+
+                     @media screen and (max-width: 1150px) {
+                     #store { margin-left: 150px; }
+
+                     @media screen and (max-width: 1020px) {
+                     #store { margin-left: 100px; }
+
+                     @media screen and (max-width: 955px) {
+                     #store { margin-left: 70px; }
+
+                     @media screen and (max-width: 850px) {
+                     #store { margin-left: 50px; }
+
+                     @media screen and (max-width: 820px) {
+                     #store { margin-left: 45px; }
+
+                   }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md" id="mynav">
-        <a class="navbar-brand" href="#">
-           <img alt="Brand" class="img-responsive" id="logo" width=160rem height=auto src="media/navbar_image/hsbc-logo-black-and-white.png">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <nav class="navbar navbar-expand-md navbar-dark mb-4" id="mynav">
+            <a class="navbar-brand" href="#">
+               <img alt="Brand" class="img-responsive" id="logo" width=160rem height=auto src="media/navbar_image/hsbc-logo-black-and-white.png">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <h5><a class="nav-link" href="/" style="color:white">Главная<span class="sr-only">(current)</span></a></h5>
-            </li>
 
-              <li class="nav-item" >
-                {% with totail_items=cart|length %}
-                {% if cart|length > 0 %}
-                    <a class="nav-link" href="{% url 'cart:cart_detail' %}">
-                        <svg class="bi bi-cart-fill" style="color:white" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                             <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                        </svg>
-                        <span class="badge badge-secondary"></span>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <h4 style="color:white">Меню</h4>
                     </a>
-                {% else %}
-                    <a class="nav-link" href="">
-                      <svg class="bi bi-cart" style="color:white" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                      </svg>
-                    </a>
-                {% endif %}
-            {% endwith %}
-            </li>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Сменить режим</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
 
-          </ul>
+                  <li class="nav-item" >
+                    {% with totail_items=cart|length %}
+                    {% if cart|length > 0 %}
+                        <a class="nav-link" href="{% url 'cart:cart_detail' %}">
+                            <svg class="bi bi-cart-fill" style="color:white" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                 <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                            </svg>
+                            <span class="badge badge-secondary"></span>
+                        </a>
+                    {% else %}
+                        <a class="nav-link" href="">
+                          <svg class="bi bi-cart" style="color:white" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                          </svg>
+                        </a>
+                    {% endif %}
+                {% endwith %}
+                </li>
 
-            <style>
-                   #store { margin-left: 500px; }
-                   @media screen and (max-width: 1215px) {
-                     #store { margin-left: auto; }
-                   }
-            </style>
+              </ul>
 
-            <div class="container" id="store">
-                    <form class="form-inline my-2 my-lg-0" action="">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search" name="search">
-                        <button class="btn btn-warning my-2 my-sm-0" type="submit">Искать</button>
-                    </form>
+
+                <div class="container" id="store">
+                        <form class="form-inline my-2 my-lg-0" action="">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search" name="search">
+                            <button class="btn btn-warning my-2 my-sm-0" type="submit">Искать</button>
+                        </form>
+                </div>
+
+                <div class="nav navbar-nav navbar-right">
+                  <div class="nav-item">
+                      <a class="btn btn-warning " href="/admin">Вход</a>
+                  </div>
+                </div>
             </div>
 
-            <div class="nav navbar-nav navbar-right">
-              <div class="nav-item">
-                  <a class="btn btn-warning " href="/admin">Вход</a>
-              </div>
-            </div>
-        </div>
-
-</nav>
+        </nav>
       {%block content%}
 
 
