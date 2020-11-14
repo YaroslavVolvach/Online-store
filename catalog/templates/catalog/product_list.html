@@ -21,15 +21,11 @@
                             {% for category in categories%}
                                 {%if category == current_category%}
                                     <li>
-
                                             <a href="{{category.get_absolute_url}}" class="list-group-item list-group-item-action "><em><strong>{{category.title}}</strong></em></a>
-
                                     </li>
                                 {%else%}
                                     <li>
-
                                             <a href="{{category.get_absolute_url}}" class="list-group-item list-group-item-action ">{{category.title}}</a>
-
                                     </li>
                                 {%endif%}
                             {% endfor %}
