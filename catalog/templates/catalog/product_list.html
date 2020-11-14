@@ -1,16 +1,15 @@
 {%extends 'catalog/base_catalog.html'%}
 
 {%block content%}
-    <div class="container-fluid">
+    <div class="container-left">
 
         <div class="row">
-
                 <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-2 mt-3 ">
                     <div class="shadow">
-                        <ul class="list-group" style="margin-left: -5px">
+                        <ul class="list-group">
                             {%if current_category%}
                                 <li >
-                                    <a href="/" class="list-group-item list-group-item-action list-group-item-secondary">Все категории</a>
+                                    <a href="/" class="list-group-item list-group-item-action list-group-item">Все категории</a>
                                 </li>
                             {%else%}
                                 <li >
@@ -21,11 +20,15 @@
                             {% for category in categories%}
                                 {%if category == current_category%}
                                     <li>
-                                            <a href="{{category.get_absolute_url}}" class="list-group-item list-group-item-action "><em><strong>{{category.title}}</strong></em></a>
+
+                                            <a href="{{category.get_absolute_url}}" class="list-group-item list-group-item-secondary "><em><strong>{{category.title}}</strong></em></a>
+
                                     </li>
                                 {%else%}
                                     <li>
+
                                             <a href="{{category.get_absolute_url}}" class="list-group-item list-group-item-action ">{{category.title}}</a>
+
                                     </li>
                                 {%endif%}
                             {% endfor %}
@@ -37,39 +40,36 @@
 
 
             <style>
-                   #list { width:100%;  margin-left: -30px;}
+                   #list { width:100%; margin-left: auto; margin-right: -350px }
                    @media screen and (max-width: 990px) {
-                     #list { width:90%; margin-left: 15px; }
+                     #list { width:100%; margin-left: 30px; }
                    }
             </style>
-            <div class="col">
-                <div class="card-deck" id="list">
-                    {% for product in products %}
-                        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mt-3">
-                            <div class="card bg-light" style="width: 100%;">
-                                <img  height="60%" src="{{product.image.url}}"  style="width:100%;" class="card-img-top" alt="изображение продукта">
-                                <div class="card-body" style='width:100%; height:100%;'>
-                                    <h4 class="card-title">{{product.title}}</h4>
+              <div class="card-deck mt-3" id='list'>
+                  {% for product in products %}
 
-                                    <div class="row">
-                                        <div class="col-sm-5"><p>Цена: <strong>{{product.price}} ₴</strong></p></div>
-                                        {%if product.quantity > 0 %}
-                                        <div class="col-sm-5"><p>В наличи: <strong>{{product.quantity}}</strong></p></div>
-                                        {%else%}
-                                        <div class="col-sm-5"><strong>Нет в наличии</strong></div>
-                                        {%endif%}
-                                    </div>
+                      <div class="col-sm-12 col-lg-3 m-1">
 
-                                    <a href="{{product.get_absolute_url}}" class="btn btn-dark">Подробнее</a>
-                                </div>
-                            </div>
-                        </div>
-                    {%endfor%}
-                </div>
+                              <div class="card bg-light mb-3" style="width: 80%;">
+                                    <img  height="60%" src="{{product.image.url}}"  style="width:100%;" class="card-img-top" alt="изображение продукта">
+                                      <div class="card-body" style='width:100%; height:100%;'>
+                                          <h4 class="card-title">{{product.name}}</h4>
 
+                                              <div class="row">
+                                                  <div class="col-sm-5"><p>Цена: <strong>{{product.price}} ₴</strong></p></div>
+                                                  {%if product.quantity > 0 %}
+                                                        <div class="col-sm-5"><p>Количестов: <strong>{{product.quantity}}</strong></p></div>
+                                                  {%else%}
+                                                        <div class="col-sm-5"><p>Количестов: <strong>Нет в наличии</strong></p></div>
+                                                  {%endif%}
+                                                   </div>
 
-
-            </div>
+                                          <a href="{{product.get_absolute_url}}" class="btn btn-dark">Подробнее</a>
+                                      </div>
+                              </div>
+                      </div>
+                  {%endfor%}
+              </div>
 
         </div>
     </div>
