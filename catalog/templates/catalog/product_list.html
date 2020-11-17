@@ -54,9 +54,9 @@
                                                   <h4 class="card-title">{{product.title}}</h4>
 
                                                       <div class="row">
-                                                          <div class="col-sm-8"><p>Цена:  <strong>{{product.price}} ₴</strong></p></div>
+                                                          <div class="col-sm-6"><p>Цена:  <strong>{{product.price}} ₴</strong></p></div>
                                                           {% if product.quantity > 0%}
-                                                            <div><p><strong>В наличии: {{product.quantity}}</strong></p></div>
+                                                            <div class="col"><p><strong>В наличии: {{product.quantity}}</strong></p></div>
                                                           {% else %}
                                                             <div><strong><p class="text-danger">Нет в наличии</p></strong></div>
                                                           {% endif %}
