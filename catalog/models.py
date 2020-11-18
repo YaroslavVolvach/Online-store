@@ -19,7 +19,7 @@ class Category(models.Model):
 class Product(models.Model):
     title = models.TextField(verbose_name='Название товара', max_length=20)
     image = models.ImageField(verbose_name='Главное фото', upload_to='main_photo/')
-    category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.CASCADE, related_name='products')
     description = models.TextField(verbose_name='Описание товара', max_length=1000)
     price = models.PositiveIntegerField(verbose_name='Стоимость')
     quantity=models.PositiveIntegerField(verbose_name='Количество')
