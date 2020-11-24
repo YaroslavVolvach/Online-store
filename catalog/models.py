@@ -24,7 +24,7 @@ class Product(models.Model):
     price = models.PositiveIntegerField(verbose_name='Стоимость')
     quantity = models.PositiveIntegerField(verbose_name='Количество')
 
-    def get_absolute_url (self):
+    def get_absolute_url(self):
         return reverse('catalog:product_detail', args=[self.id])
 
     def __str__ (self):

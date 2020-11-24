@@ -39,7 +39,7 @@
                                     <img src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'img/default.jpg' %} {% endif %}" alt="..." style="height: 130px; width: auto">
                             </a>
                             </th>
-                            <td>{{ product.name }}</td>
+                            <td>{{ product.title }}</td>
                             <td>
                             <form action="{% url 'cart:cart_add' product.id %}" method="post">
                                 {% csrf_token %}

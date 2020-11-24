@@ -21,6 +21,7 @@ def order(request):
             for item in cart:
                 list_item.append(OrderItem.objects.create(product=item['product'], price=item['price'],
                                                           quantity=item['quantity'], total_price=item['total_price']))
+
                 product = Product.objects.get(id=item['product_id'])
                 product.quantity = product.quantity - item['quantity']
                 product.save()

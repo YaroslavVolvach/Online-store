@@ -17,18 +17,14 @@
                                 </li>
                             {%endif%}
 
-                            {% for category in categories%}
-
-                                {%if category == current_category%}
+                            {%for category in categories%}
                                     <li>
+                                        {%if category == current_category%}
                                             <a href="{{category.get_absolute_url}}" class="list-group-item list-group-item-secondary "><em><strong>{{category.title}}</strong></em></a>
+                                        {%else%}
+                                            <a href="{{category.get_absolute_url}}" class="list-group-item list-group-item-action ">{{category.title}}</a>
+                                        {%endif%}
                                     </li>
-                                {%else%}
-                                    <li>
-                                        <a href="{{category.get_absolute_url}}" class="list-group-item list-group-item-action ">{{category.title}}</a>
-                                    </li>
-                                {%endif%}
-
                             {% endfor %}
                         </ul>
                     </div>
@@ -54,7 +50,7 @@
                                                   <h4 class="card-title">{{product.title}}</h4>
 
                                                       <div class="row">
-                                                          <div class="col-sm-6"><p>Цена:  <strong>{{product.price}} ₴</strong></p></div>
+                                                          <div class="col-sm-6"><p>Цена:  <strong>{{product.price}} $</strong></p></div>
                                                           {% if product.quantity > 0%}
                                                             <div class="col"><p><strong>В наличии: {{product.quantity}}</strong></p></div>
                                                           {% else %}
@@ -75,5 +71,38 @@
                 </div>
 
         </div>
+        {% if is_paginated %}
+                <nav aria-label="...">
+                  <ul class="pagination justify-content-center">
+                        <li class="page-item {%if not prev_url%}disabled{%endif%}">
+                            <a class="page-link" href="{{prev_url}}" tabindex="-1" aria-disabled="true"><strong> ❮ </strong></a>
+                        </li>
+
+
+
+
+
+                        {%for n in products.paginator.page_range%}
+                            {% if products.number == n%}
+                                <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="?page={{n}}">{{n}}<span class="sr-only">(current)</span></a>
+                                </li>
+
+                            {%elif n > products.number|add:-3 and n < products.number|add:3 %}
+
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{n}}">{{n}}</a>
+                                </li>
+                            {%endif%}
+                        {%endfor%}
+
+                        {%if next_url%}
+                            <li class="page-item">
+                                <a class="page-link" href="{{next_url}}" tabindex="-1" aria-disabled="true"><strong> ❯ </strong></a>
+                            </li>
+                        {%endif%}
+                  </ul>
+                </nav>
+        {%endif%}
     </div>
 {%endblock%}
