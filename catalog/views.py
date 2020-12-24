@@ -32,6 +32,7 @@ def product_list (request, category_id=False):
 
     context = {'categories': Category.objects.all(), 'products': page, 'is_paginated': is_paginated,
                'prev_url': prev_url, 'next_url': next_url}
+
     if category_id:
         context['current_category'] = get_object_or_404(Category, id=category_id)
         context['products'] = Product.objects.filter(category=category_id)
@@ -46,3 +47,6 @@ def product_detail (request, id):
 
     }
     return render(request, 'catalog/product_detail.html', context)
+
+
+

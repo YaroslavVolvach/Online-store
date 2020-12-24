@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    {% load static %}
+    {%load static %}
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -11,12 +11,24 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>HSBC</title>
     <style>
-        .container-my {
+        .order {
             background: #212529;
             max-width: 400px;
             height: 510px;
             position: relative;
             margin-top: 10%;
+            margin-left: auto;
+            margin-right: auto;
+            padding-right: 15px;
+            padding-left: 15px;
+            border-radius: 40px;
+        }
+        .login {
+            background: #212529;
+            max-width: 400px;
+            height: 250px;
+            position: relative;
+            margin-top: 15%;
             margin-left: auto;
             margin-right: auto;
             padding-right: 15px;
@@ -59,7 +71,7 @@
     </style>
 </head>
 <body>
-        <nav class="navbar navbar-expand-md navbar-dark mb-4" id="mynav">
+                <nav class="navbar navbar-expand-md navbar-dark mb-4" id="mynav">
             <a class="navbar-brand" href="#">
                <img alt="Brand" class="img-responsive" id="logo" width=160rem height=auto src="media/navbar_image/hsbc-logo-black-and-white.png">
             </a>
@@ -81,14 +93,14 @@
                       <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </li>
+
                 <li class="nav-item" >
-                    {% with totail_items=cart|length %}
                     {% if cart|length > 0 %}
                         <a class="nav-link" href="{% url 'cart:cart_detail' %}">
                             <svg class="bi bi-cart-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                  <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                             </svg>
-                            <span class="badge badge-secondary">{{ totail_items }}</span>
+                            <span class="badge badge-secondary">{{cart|length}}</span>
                         </a>
                     {% else %}
                         <a class="nav-link" href="">
@@ -97,7 +109,7 @@
                           </svg>
                         </a>
                     {% endif %}
-                {% endwith %}
+
             </li>
 
               </ul>
@@ -119,7 +131,6 @@
 
         </nav>
       {%block content%}
-
 
       {%endblock%}
 

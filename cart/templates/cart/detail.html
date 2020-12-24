@@ -13,7 +13,7 @@
                         <a href="{% url 'cart:cart_detail' %}" style="color: #ffffff">
                             {{ totail_items }} item {{ totail_items|pluralize }}, {{ cart.get_total_price }}
                         </a>
-                        {% else %}
+                    {% else %}
                        Корзина пуста
                     {% endif %}
                 {% endwith %}
@@ -55,8 +55,8 @@
                             <td>
                                 <a href="{% url 'cart:cart_remove' product.id %}">Удалить</a>
                             </td>
-                            <td> {{ item.quantity }}</td>
-                            <td> {{ item.total_price }}</td>
+                            <td> {{ item.price }} $</td>
+                            <td> {{ item.total_price }} $</td>
 
                         </tr>
                     {% endwith %}
@@ -64,7 +64,7 @@
                 <tr>
                     <td><b>Суммарная стоимость</b></td>
                     <td colspan="4"></td>
-                    <td colspan="num"><b> {{ cart.get_total_price }}</b></td>
+                    <td colspan="num"><b> {{ cart.get_total_price }} $</b></td>
                 </tr>
             </tbody>
           </table>

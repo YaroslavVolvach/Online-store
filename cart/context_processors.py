@@ -1,5 +1,4 @@
 from .cart import Cart
-from catalog.views import product_detail
 
 
 def cart(request):

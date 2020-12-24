@@ -7,7 +7,7 @@ class Order(models.Model):
     city = models.CharField(max_length=15)
     number_phone = models.PositiveIntegerField()
     postcode = models.PositiveIntegerField()
-    total_cost = models.PositiveIntegerField()
+    total_cost = models.PositiveIntegerField(null=True, blank=True)
 
     class Meta:
         verbose_name = 'заказ'
@@ -22,7 +22,7 @@ class OrderItem(models.Model):
     price = models.PositiveIntegerField()
     quantity = models.PositiveIntegerField()
     total_price = models.PositiveIntegerField()
-    order = models.ForeignKey(Order, on_delete=models.deletion.CASCADE, related_name='items')
+    order = models.ForeignKey(Order, on_delete=models.deletion.CASCADE)
 
     def __str__(self):
         return self.product

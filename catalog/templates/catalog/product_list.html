@@ -2,7 +2,6 @@
 
 {%block content%}
     <div class="container-fluid">
-
         <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-2 mt-3 ">
                     <div class="shadow">
@@ -75,30 +74,28 @@
                 <nav aria-label="...">
                   <ul class="pagination justify-content-center">
                         <li class="page-item {%if not prev_url%}disabled{%endif%}">
-                            <a class="page-link" href="{{prev_url}}" tabindex="-1" aria-disabled="true"><strong> ❮ </strong></a>
+                            <a class="page-link" href="{{prev_url}}" tabindex="-1" aria-disabled="true"><strong><p style="color:#212529">❮</p> </strong></a>
                         </li>
-
-
 
 
 
                         {%for n in products.paginator.page_range%}
                             {% if products.number == n%}
                                 <li class="page-item active" aria-current="page">
-                                        <a class="page-link" href="?page={{n}}">{{n}}<span class="sr-only">(current)</span></a>
+                                    <a class="page-link" href="?page={{n}}" style="background:#212529"><strong><p>{{n}}</p></strong><span class="sr-only">(current)</span></a>
                                 </li>
 
                             {%elif n > products.number|add:-3 and n < products.number|add:3 %}
 
                                 <li class="page-item">
-                                    <a class="page-link" href="?page={{n}}">{{n}}</a>
+                                    <a class="page-link" href="?page={{n}}"><strong><p style="color:#212529">{{n}}</p></strong></a>
                                 </li>
                             {%endif%}
                         {%endfor%}
 
                         {%if next_url%}
                             <li class="page-item">
-                                <a class="page-link" href="{{next_url}}" tabindex="-1" aria-disabled="true"><strong> ❯ </strong></a>
+                                <a class="page-link" href="{{next_url}}" tabindex="-1" aria-disabled="true" style="background: #212529"><strong><p style="color:white">❯</p> </strong></a>
                             </li>
                         {%endif%}
                   </ul>
