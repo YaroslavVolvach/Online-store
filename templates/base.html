@@ -35,6 +35,18 @@
             padding-left: 15px;
             border-radius: 40px;
         }
+        .registration {
+            background: #212529;
+            max-width: 400px;
+            height: 430px;
+            position: relative;
+            margin-top: 10%;
+            margin-left: auto;
+            margin-right: auto;
+            padding-right: 15px;
+            padding-left: 15px;
+            border-radius: 40px;
+        }
         #logo{background: white}
         #mynav{background: #212529;}
 
@@ -122,11 +134,19 @@
                         </form>
                 </div>
 
-                <div class="nav navbar-nav navbar-right">
-                  <div class="nav-item">
-                      <a class="btn btn-warning " href="/admin">Вход</a>
-                  </div>
-                </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        {%if user.is_authenticated%}
+                            {%if user.is_staff%}
+                                <a class="btn btn-warning " href="admin/">Admin</a>
+                            {%endif%}
+                            <a class="btn btn-warning" style="white-space: nowrap" href="account/logout">Log out</a>
+                        {%else%}
+                          <a class="btn btn-warning " href="account/registration">Registration</a>
+                          <a class="btn btn-warning" style="white-space: nowrap" href="account/login">Log in</a>
+                        {%endif%}
+                    </div>
+
+
             </div>
 
         </nav>

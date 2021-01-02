@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import *
+from .models import Product, Category, Gallery
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -15,7 +15,8 @@ class GalleryInline(admin.TabularInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('title', 'image', 'category', 'description', 'price', 'quantity')
+    list_display = ('title', 'image', 'category', 'description', 'price',
+                    'quantity')
     inlines = [GalleryInline, ]
 
 

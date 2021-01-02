@@ -1,18 +1,23 @@
 from django.shortcuts import render, get_object_or_404
 
-from django.views.generic.base import View
-from .models import *
-from cart.forms import *
-from django.core.paginator import Paginator
 from django.db.models import Q
+from cart.forms import CartAddProductForm
+from .models import Product, Category
+from django.core.paginator import Paginator
+from account.models import CustomUser
 
 
-def product_list (request, category_id=False):
+def product_list(request, category_id=False):
+    print()
+    print(request.session.keys())
+    print()
     if request.GET.get('search', ''):
         products = Product.objects.filter(
-            Q(title__icontains=request.GET.get('search', '')) | Q(title__iexact=request.GET.get('search', '')))
+            Q(title__icontains=request.GET.get('search', ''))
+            | Q(title__iexact=request.GET.get('search', '')))
     elif category_id:
-        products = Product.objects.filter(category=get_object_or_404(Category, id=category_id))
+        products = Product.objects.filter(
+            category=get_object_or_404(Category, id=category_id))
     else:
         products = Product.objects.all()
 
@@ -30,23 +35,23 @@ def product_list (request, category_id=False):
     else:
         next_url = ''
 
-    context = {'categories': Category.objects.all(), 'products': page, 'is_paginated': is_paginated,
-               'prev_url': prev_url, 'next_url': next_url}
+    context = {'categories': Category.objects.all(),
+               'products': page,
+               'is_paginated': is_paginated,
+               'prev_url': prev_url,
+               'next_url': next_url}
 
     if category_id:
-        context['current_category'] = get_object_or_404(Category, id=category_id)
+        context['current_category'] = get_object_or_404(
+            Category, id=category_id)
+
         context['products'] = Product.objects.filter(category=category_id)
 
     return render(request, 'catalog/product_list.html', context)
 
 
-def product_detail (request, id):
-    context = {
-        'product': get_object_or_404(Product, id=id),
-        'cart_product_form': CartAddProductForm(),
+def product_detail(request, id):
+    context = {'product': get_object_or_404(Product, id=id),
+               'cart_product_form': CartAddProductForm()}
 
-    }
     return render(request, 'catalog/product_detail.html', context)
-
-
-

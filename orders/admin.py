@@ -11,8 +11,11 @@ class OrderItemInline(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['name', 'family_name', 'city', 'number_phone', 'postcode', 'total_cost']
-
+    list_display = ['name',
+                    'family_name',
+                    'city', 'number_phone',
+                    'postcode',
+                    'total_cost']
     inlines = [OrderItemInline]
 
 

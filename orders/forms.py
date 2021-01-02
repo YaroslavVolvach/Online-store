@@ -16,7 +16,7 @@ class OrderForm(forms.Form):
     number_phone.widget.attrs.update({'class': 'form-control'})
     postcode.widget.attrs.update({'class': 'form-control'})
 
-    def save (self, cart):
+    def save(self, cart):
         my_order = Order(
             name=self.cleaned_data['name'],
             family_name=self.cleaned_data['family_name'],
@@ -30,8 +30,11 @@ class OrderForm(forms.Form):
         my_order.save()
 
         for item in cart:
-            OrderItem.objects.create(product=item['product'], price=item['price'], quantity=item['quantity'],
-                                     total_price=item['total_price'], order=my_order)
+            OrderItem.objects.create(product=item['product'],
+                                     price=item['price'],
+                                     quantity=item['quantity'],
+                                     total_price=item['total_price'],
+                                     order=my_order)
 
             product = Product.objects.get(id=item['product_id'])
             product.quantity = product.quantity - item['quantity']
