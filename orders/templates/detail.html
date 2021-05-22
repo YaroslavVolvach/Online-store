@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
-
+{%load static %}
+{%block style%}<link rel="stylesheet" href="{% static 'css/orders.css' %}">{%endblock%}
 {%block content%}
+    {% include "navbar.html" %}
+
     <form action="{% url 'orders:order'%}" method="post" >
         {% csrf_token %}
         <div class="order">
-
             <div class="row">
                     {%for field in form%}
                         <div class="col-11" style="color:white; margin-left: 15px;">

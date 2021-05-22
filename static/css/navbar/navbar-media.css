@@ -1,0 +1,112 @@
+@media screen and (max-width: 1700px) {
+    #store { margin-left: 490px; }
+}
+@media screen and (max-width: 1650px) {
+    #store { margin-left: 400px; }
+}
+@media screen and (max-width: 1500px) {
+    #store { margin-left: 350px; }
+}
+@media screen and (max-width: 1300px) {
+    #store { margin-left: 280px; }
+}
+@media screen and (max-width: 1250px) {
+    #store { margin-left: 250px; }
+}
+
+@media screen and (max-width: 1120px) {
+    #store { margin-left: 230px; }
+}
+@media screen and (max-width: 1070px) {
+    #store { margin-left: 200px; }
+}
+@media screen and (max-width: 1020px) {
+    #store { margin-left: 150px; }
+}
+@media screen and (max-width: 900px) {
+    #store { margin-left: 120px; }
+}
+@media screen and (max-width: 850px) {
+    #store { margin-left: 105px; }
+}
+
+@media screen and (max-width: 825px) {
+    #store { margin-left: 90px; }
+}
+@media screen and (max-width: 800px) {
+    #store { margin-left: 70px; }
+}
+
+@media screen and (max-width: 775px) {
+    #store { margin-left: 50px; }
+}
+
+@media screen and (max-width: 768px) {
+    #main_img{display: none;}
+    #cart{display: none;}
+    #navbarDropdown {display: block;}
+    #store { margin-left: 230px;}
+    #navbarDropdown{ margin-left: 310px;}
+}
+
+@media screen and (max-width: 700px) {
+    #store { margin-left: 210px;}
+    #navbarDropdown{ margin-left: 290px;}
+}
+
+@media screen and (max-width: 660px) {
+    #store { margin-left: 190px;}
+    #navbarDropdown{ margin-left: 270px;}
+}
+@media screen and (max-width: 630px) {
+    #store { margin-left: 170px;}
+    #navbarDropdown{ margin-left: 250px;}
+}
+@media screen and (max-width: 615px) {
+    #store { margin-left: 150px;}
+    #navbarDropdown{ margin-left: 230px;}
+}
+@media screen and (max-width: 576px) {
+    #store { margin-left: 130px;}
+    #navbarDropdown{ margin-left: 200px;}
+    #sub{display: none;}
+}
+@media screen and (max-width: 470px) {
+    #store { margin-left: 110px;}
+    #navbarDropdown{ margin-left: 180px;}
+}
+
+@media screen and (max-width: 445px) {
+    #store { margin-left: 90px;}
+    #navbarDropdown{ margin-left: 160px;}
+}
+
+@media screen and (max-width: 410px) {
+    #store { margin-left: 70px;}
+    #navbarDropdown{ margin-left: 140px;}
+}
+
+@media screen and (max-width: 370px) {
+    #store { margin-left: 50px;}
+    #navbarDropdown{ margin-left: 120px;}
+}
+
+@media screen and (max-width: 330px) {
+    #store { margin-left: 30px;}
+    #navbarDropdown{ margin-left: 100px;}
+}
+
+@media screen and (max-width: 300px) {
+    #store { margin-left: 20px;}
+    #navbarDropdown{ margin-left: 90px;}
+}
+
+@media screen and (max-width: 280px) {
+    #store { margin-left: 10px;}
+    #navbarDropdown{ margin-left: 80px;}
+}
+
+@media screen and (max-width: 250px) {
+    #store { margin-left: 0px;}
+    #navbarDropdown{ margin-left: 70px;}
+}

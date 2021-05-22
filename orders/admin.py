@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from .models import Order, OrderItem
 
 
@@ -11,10 +10,7 @@ class OrderItemInline(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['name',
-                    'family_name',
-                    'city', 'number_phone',
-                    'postcode',
+    list_display = ['name', 'family_name', 'city', 'number_phone', 'postcode',
                     'total_cost']
     inlines = [OrderItemInline]
 

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{%load static %}
+{%block style%}
+   <link rel="stylesheet" href="{% static 'css/order/order_list.css' %}">
+   <link rel="stylesheet" href="{% static 'css/order/order_list_media.css' %}">
+{%endblock%}
+{%block content%}
+    {% include "navbar_profile.html" %}
+    {%for order in orders %}
+        <div class="order_list">
+                <div class="row">
+                    <h5 class="col-sm-12 col-md-1" id="order_number">№ {{forloop.counter}}</h5>
+                    <h5 class="col-5 col-sm-5 col-md" id="order_name">Name: {{order.name}}</h5>
+                    <h5 class="col-5 col-sm-5 col-md" id="order_family">Family name: {{order.family_name}}</h5>
+                    <h5 class="col-5 col-sm-5 col-md" id="order_city">City: {{order.city}}</h5>
+                    <h5 class="col-5 col-sm-5 col-md" id="order_postcode">Postcode: {{order.postcode}}</h5>
+                    <a href="{{order.get_absolute_url}}" class="btn btn-warning" id="order_button_detail"><h6>Detail</h6></a>
+                    <h5 class="col-5 col-sm-5 col-md-1" id="order_id">id: {{order.id}} </h5>
+                </div>
+        </div>
+    {%endfor%}
+{%endblock%}

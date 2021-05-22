@@ -1,0 +1,33 @@
+.items {
+      background: white;
+      max-width: 1500px;
+      height: 50px;
+      position: relative;
+      margin-top: 3%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-right: 15px;
+      padding-left: 15px;
+      border-radius: 40px;
+    }
+
+.order_information {
+      background: white;
+      max-width: 500px;
+      height: 290px;
+      position: relative;
+      margin-top: 3%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-right: 15px;
+      padding-left: 15px;
+      border-radius: 40px;
+  }
+
+.order_info_header {
+    color: white;
+    margin-top: 3%;
+    text-align: center;
+}
+
+body {background: #212529; }

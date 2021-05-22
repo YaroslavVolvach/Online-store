@@ -1,0 +1,84 @@
+@media screen and (max-width: 1445px) {
+                     .comment { margin-left: 530px;}
+                     .my_comment { margin-left: 630px;}
+                     .comment_form { margin-left: 640px;}
+                     .label_form { margin-left: 640px;}
+                     .bottom_form { margin-left: 640px;}
+
+                    }
+@media screen and (max-width: 1335px) {
+                     .comment { margin-left: 430px;}
+                     .my_comment { margin-left: 530px;}
+                     .comment_form { margin-left: 540px;}
+                     .label_form { margin-left: 540px;}
+                     .bottom_form { margin-left: 540px;}
+                   }
+@media screen and (max-width: 1250px) {
+                     .comment { margin-left: 330px;}
+                     .my_comment { margin-left: 430px;}
+                     .comment_form { margin-left: 440px;}
+                     .label_form { margin-left: 440px;}
+                     .bottom_form { margin-left: 440px;}
+                   }
+@media screen and (max-width: 1120px) {
+                     .comment { margin-left: 230px;}
+                     .my_comment { margin-left: 330px;}
+                     .comment_form { margin-left: 340px;}
+                     .label_form { margin-left: 340px;}
+                     .bottom_form { margin-left: 340px;}
+                   }
+@media screen and (max-width: 1050px) {
+                     .comment { margin-left: 130px;}
+                     .my_comment { margin-left: 230px;}
+                     .comment_form { margin-left: 240px;}
+                     .label_form { margin-left: 240px;}
+                     .bottom_form { margin-left: 240px;}
+                     }
+@media screen and (max-width: 950px) {
+                     .comment { margin-left: 30px; width: 650px;}
+                     .my_comment { margin-left: 130px; width: 650px}
+                     .comment_form { margin-left: 140px;}
+                     .label_form { margin-left: 140px;}
+                     .bottom_form { margin-left: 140px;}
+                     .comment_button {margin-left: -45px;}
+                     }
+
+@media screen and (max-width: 790px) {
+                     .comment { margin-left: 30px; width: 600px;}
+                     .my_comment { margin-left: 130px; width: 600px;}
+                     #btn_comment {margin-left: 500px;}
+}
+@media screen and (max-width: 790px) {
+                     .comment { margin-left: 30px; width: 600px;}
+                     .my_comment { margin-left: 130px; width: 600px;}
+                     #btn_comment {margin-left: 500px;}
+}
+
+@media screen and (max-width: 400px) {
+                     .comment { margin-left: 0px; max-width:350px;}
+                     .my_comment { margin-left: 5px; max-width:350px;}
+                     .comment_form { margin-left: 0px; width:350px;}
+                     .label_form { margin-left: 140px;}
+                     .image_product { max-width:350px; max-height: 350px;}
+                     .btn-group { margin-left: 200px;}
+                   }
+
+
+
+@media screen and (max-width: 1500px) {
+                     .image_product { max-width:550px; max-height: 550px;}
+                   }
+@media screen and (max-width: 1350px) {
+                     .image_product { max-width:540px; max-height: 540px;}
+                   }
+@media screen and (max-width: 765px) {
+                     .image_product { max-width:700px; max-height: 700px;}
+                   }
+@media screen and (max-width: 500px) {
+                     .image_product { max-width:450px; max-height: 450px;}
+                   }
+
+@media screen and (max-width: 300px) {
+                     .image_product { max-width:290px; max-height: 290px;}
+                   }
+

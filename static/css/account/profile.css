@@ -1,0 +1,25 @@
+li {
+    list-style-type: none;
+   }
+
+#information {
+    height:360px;
+    max-width:450px;
+    background: #e8e8e8;
+    margin-top: 30px;
+    border-style: groove;
+    border-width: 3px;
+    border-radius: 10px;
+}
+
+#menu{
+    margin-top: 30px;
+    margin-left: 200px;
+    min-width:300px
+}
+
+#main-image{
+    margin-top: 30px;
+    margin-left: 50px;
+    min-width:500px;
+}

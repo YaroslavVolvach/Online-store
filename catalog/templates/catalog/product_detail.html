@@ -1,23 +1,27 @@
-{%extends 'catalog/base_catalog.html'%}
+{%extends 'catalog/base_catalog.html'%}{%load static%} {%load catalog_tags %}
+{%block style%}
+    <link rel="stylesheet" href="{% static 'css/catalog/product_detail.css'%}">
+    <link rel="stylesheet" href="{% static 'css/catalog/product_detail_media.css'%}">
+{%endblock%}
+{%block catalog%}
 
-{%block content%}
     <div class="container-fluid" >
             <div class="row" style="margin-bottom: 5%;">
 
-                 <div class="col-sm-3">
+                 <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5 mt-3">
 
                     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
 
                             <div class="carousel-inner">
 
                                   <div class="carousel-item active">
-                                    <img src="{{product.image.url}}"  class="d-block w-100" alt="..." >
+                                    <img src="{{product.image.url}}"  class="image_product" alt="..." >
                                   </div>
 
                                     {% for i in product.images.all %}
 
                                         <div class="carousel-item">
-                                             <img src="{{i.image.url}}"  class="d-block w-100" alt="...">
+                                             <img src="{{i.image.url}}"  class="image_product" alt="...">
                                         </div>
 
                                     {% endfor %}
@@ -40,8 +44,8 @@
                 </div>
 
 
-               <div class="col-sm-9">
-
+               <div class="col">
+                    <div class="description">
                          <h1>{{ product.title }}</h1>
                          <p class="text-justify">{{ product.description}}</p>
                         <div class="row justify-content-between">
@@ -55,17 +59,98 @@
                                 </form>
                             {%endif%}
 
-                            <div class="col col-1">
-                                <button type="button" value="Previous Page" class="btn btn-dark pull-right" style="background: #212529" onClick="window.history.back();return false;">
+                            <div class="col-auto">
+                                <button type="button" value="Previous Page" class="btn btn-dark pull-right" style="background: #212529 margin-left: 15px" onClick="window.history.back();return false;">
                                     Назад
                                 </button>
                             </div>
                         </div>
-
+                    </div>
                </div>
-
-
-
             </div>
+
+        <div class="row">
+            {%if user.is_authenticated%}
+            <div class="col">
+              <form action="{% url 'catalog:comment_create' user.id product.id%}" method="POST"> {% csrf_token %}
+                    <p class="label_form"><b>Введите ваш отзыв:</b></p>
+                    <p><textarea class="comment_form" rows="10" cols="45" name="text"></textarea></p>
+                    <p class="bottom_form"><input class="btn btn-dark" style="background: #212529" type="submit"  value="Send comment"></p>
+              </form>
+            {%endif%}
+                  {%for comment in comments%}
+                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Edit comment</h5>
+                              </div>
+                                <form action="{% url 'catalog:comment_edit' comment.id product.id%}" method="POST"> {% csrf_token %}
+                                  <div class="modal-body">
+                                        <p><textarea class="form-control" rows="10" cols="45" name="text"></textarea></p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                     <p style="margin-left: 740px"><input class="btn btn-dark" type="submit"  value="Edit"></p>
+                                  </div>
+                                </form>
+                            </div>
+                          </div>
+                      </div>
+                   {%if comment in user.comment.all%}
+                        <div class="my_comment">
+                   {%else%}
+                        <div class="comment">
+                   {%endif%}
+                            <div class="row">
+                            {%if comment not in user.comment.all%}
+                                <div class="col-1">
+                                    <img src="{{comment.user.main_image.url}}"  class="image_comment" alt="...">
+                                </div>
+                                <div class="col-2" style="margin-left: 75px">
+                                    <strong>{{comment.user.user_name}}</strong>
+
+                                </div>
+                           {%endif%}
+                           {%if comment in user.comment.all or user.is_staff%}
+                                <div class="col-9">
+                                    <div class="btn-group" id="btn_comment" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-dark" id="Edit" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Edit</button>
+                                        <a href="{% url 'catalog:comment_delete' comment.id product.id%}" class="btn btn-dark" id="Delete">Delete</a>
+                                    </div>
+                                </div>
+                           {%endif%}
+                                <div class="col-12">
+                                    {{comment.text}}
+                                </div>
+
+
+                                        <div class="col-12" style="margin-top: 5px">
+                                            {{comment.date_joined}}
+                                        </div>
+                                   {%if comment.edit_joined is None%}
+                                        <div class="col-sm-12 col-md-7 col-lg-6 col-xl-10 mt-3" style="margin-top: 5px">
+                                            Edit: {{comment.edit_joined}}
+                                        </div>
+                                   {%endif%}
+
+                                        <div class="col-sm-12 col-md-7 col-lg-6 col-xl-1 mt-3">
+                                            {%liked_comment user.like.all comment.like.all as like%}
+                                            {%if like%}
+                                                <a href="{% url 'catalog:unlike' like.id product.id%}" class="btn btn-dark">UnLike</a>
+                                            {%else%}
+                                                <a href="{% url 'catalog:like' comment.id product.id%}" class="btn btn-dark">Like</a>
+                                            {%endif%}
+                                            {{comment.like.count}}
+                                        </div>
+                            </div>
+
+                   </div>
+             {%endfor%}
+            </div>
+           </div>
+        </div>
     </div>
+
 {%endblock%}
+

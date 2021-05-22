@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{%load static %}
+{%block style%}
+   <link rel="stylesheet" href="{% static 'css/order/items.css' %}">
+   <link rel="stylesheet" href="{% static 'css/order/items_media.css'%}">
+{%endblock%}
+{%block content%}
+     <h3 class="order_info_header">Order Information</h3>
+    <div class="order_information">
+        {%for key, value in info.items%}
+            <p></p>
+            <div class="row">
+                <div class="col">
+                    <h5 style="text-align: center;">{{key}}:</h5>
+                </div>
+                <div class="col">
+                    {%if key == 'Total price' %}
+                        <h5 style="text-align: center;">{{value}} $</h5>
+                    {%else%}
+                        <h5 style="text-align: center;">{{value}}</h5>
+                    {%endif%}
+                </div>
+            </div>
+        {%endfor%}
+    </div>
+    {%for item in items %}
+        <div class="items">
+            <div class="row">
+                <h5 class="col-sm-12 col-md-1" id="item_number">№ {{forloop.counter}}</h5>
+                <h5 class="col-5 col-sm-5 col-md" id="item_price">Price: {{item.price}} $</h5>
+                <h5 class="col-5 col-sm-5 col-md">Quantity: {{item.quantity}}</h5>
+                <h5 class="col-5 col-sm-5 col-md" id="item_total_price">Total price: {{item.total_price}} $</h5>
+                <h5 class="col-5 col-sm-5 col-md-1">id:{{item.id}}</h5>
+            </div>
+        </div>
+    {%endfor%}
+{%endblock%}

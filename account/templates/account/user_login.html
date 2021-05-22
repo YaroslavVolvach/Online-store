@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
+{%load static %}
+{%block style%}
+   <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{%endblock%}
 
 {%block content%}
+{% include "navbar.html" %}
+{%if message%}
+        <div class="container col-3" style="background: rgba(245, 35, 35, 0.5); border-radius: 10px; margin-bottom:-3%;margin-top: 3%;">
+            <div style="text-align:  center;"><strong>{{message}}</strong></div>
+        </div>
+{%endif%}
 <form action="{% url 'account:login'%}" method="post" >
     {% csrf_token %}
     <div class="login">

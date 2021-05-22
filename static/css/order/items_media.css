@@ -1,0 +1,54 @@
+@media screen and (max-width: 767px) {
+    #item_number{margin-left: 210px;}
+    #item_price{margin-left: 70px;}
+    #item_total_price{margin-left: 70px;}
+    .items{height: 100px; max-width: 500px;}
+}
+@media screen and (max-width: 489px) {
+    .items{height: 110px;}
+}
+@media screen and (max-width: 475px) {
+   #item_number{margin-left: 200px;}
+    #item_price{margin-left: 50px;}
+    #item_total_price{margin-left: 50px;}
+}
+@media screen and (max-width: 445px) {
+    #item_number{margin-left: 180px;}
+    #item_price{margin-left: 45px;}
+    #item_total_price{margin-left: 45px;}
+}
+@media screen and (max-width: 415px) {
+    #item_number{margin-left: 160px;}
+    #item_price{margin-left: 35px;}
+    #item_total_price{margin-left: 35px;}
+}
+
+@media screen and (max-width: 369px) {
+    #item_number{margin-left: 140px;}
+    #item_price{margin-left: 25px;}
+    #item_total_price{margin-left: 25px;}
+    .items{height: 140px;}
+}
+@media screen and (max-width: 325px) {
+    #item_number{margin-left: 120px;}
+    #item_price{margin-left: 15px;}
+    #item_total_price{margin-left: 15px;}
+}
+
+@media screen and (max-width: 312px) {
+    #item_number{margin-left: 100px;}
+    #item_price{margin-left: 5px;}
+    #item_total_price{margin-left: 5px;}
+    .items{height: 180px;}
+}
+@media screen and (max-width: 240px) {
+    #item_number{margin-left: 80px;}
+}
+
+@media screen and (max-width: 205px) {
+    #item_number{margin-left: 60px;}
+}
+
+@media screen and (max-width: 175px) {
+    #item_number{margin-left: 50px;}
+}

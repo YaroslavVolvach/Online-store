@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white" style="background: #212529;" >
+    <a class="navbar-brand" href="#">
+        <img alt="Brand" class="img-responsive" style="background: white" width=160rem height=auto src="media/navbar_image/hsbc-logo-black-and-white.png">
+    </a>
+    <ul class="navbar-nav mr-auto" style="margin-left:700px">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'catalog:product_list' %}">Main page<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Friends</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Massages</a>
+      </li>
+    </ul>
+
+    <div>
+        <a class="btn btn-dark" style="white-space: nowrap" href="{% url 'account:change_profile'%}">Change profile</a>
+        <a class="btn btn-dark" style="white-space: nowrap" href="{% url 'account:logout' %}">Log out</a>
+    </div>
+</nav>

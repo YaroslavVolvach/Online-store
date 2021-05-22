@@ -1,0 +1,59 @@
+@media screen and (max-width: 1295px) {
+    .order_list{height: 50px;}
+    #order_button_detail{height: 50px;}
+}
+@media screen and (max-width: 767px) {
+    .order_list{height: 235px; width:300px;}
+    #order_number{margin-left: 110px;}
+    #order_name{margin-left: 30px;}
+    #order_city{margin-left: 30px;}
+    #order_id{margin-left: 110px;}
+    #order_button_detail{height:35px; width:100%;}
+}
+@media screen and (max-width: 575px) {
+    .order_list{height: 210px; width:400px;}
+    #order_number{margin-left: 150px;}
+    #order_id{margin-left: 150px;}
+}
+
+@media screen and (max-width: 400px) {
+    .order_list{height: 235px; width:350px;}
+    #order_number{margin-left: 130px;}
+    #order_name{margin-left: 25px;}
+    #order_family{margin-left: 25px;}
+    #order_city{margin-left: 25px;}
+    #order_postcode{margin-left: 25px;}
+    #order_id{margin-left: 130px;}
+}
+
+@media screen and (max-width: 350px) {
+    .order_list{width:300px;}
+    #order_number{margin-left: 110px;}
+    #order_id{margin-left: 110px;}
+}
+
+@media screen and (max-width: 300px) {
+    .order_list{width:250px;}
+    #order_number{margin-left: 90px;}
+     #order_name{margin-left: 15px;}
+    #order_family{margin-left: 15px;}
+    #order_city{margin-left: 15px;}
+    #order_postcode{margin-left: 15px;}
+    #order_id{margin-left: 90px;}
+}
+
+@media screen and (max-width: 250px) {
+    .order_list{height: 250px; width:210px;}
+    #order_number{margin-left: 60px;}
+    #order_name{margin-left: 0px;}
+    #order_family{margin-left: 0px;}
+    #order_city{margin-left: 0px;}
+    #order_postcode{margin-left: 0px;}
+    #order_id{margin-left: 60px;}
+}
+
+@media screen and (max-width: 200px) {
+    .order_list{width:190px;}
+    #order_number{margin-left: 40px;}
+    #order_id{margin-left: 40px;}
+}

@@ -40,9 +40,11 @@ class Cart:
         for product in products:
             self.cart[str(product.id)]['product'] = product
             self.cart[str(product.id)]['product_id'] = product.id
+            self.cart[str(product.id)]['product_quantity'] = product.quantity
 
         for item in self.cart.values():
             item['total_price'] = Decimal(item['price']) * item['quantity']
+
             yield item
 
     def get_total_price(self):

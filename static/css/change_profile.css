@@ -1,0 +1,12 @@
+.change_profile {
+         background: #212529;
+         max-width: 490px;
+         height: 530px;
+         position: relative;
+         margin-top: 7%;
+         margin-left: auto;
+         margin-right: auto;
+         padding-right: 15px;
+         padding-left: 15px;
+         border-radius: 40px;
+        }

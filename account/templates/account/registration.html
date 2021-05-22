@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
-
+{%load static %}
+{%block style%}
+   <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+{%endblock%}
 {%block content%}
+    {% include "navbar.html" %}
+
     {%if message%}
         <div class="container col-3" style="background: rgba(245, 35, 35, 0.5); border-radius: 10px; margin-bottom:-7%;margin-top: 3%; ">
              <strong>{{message}}</strong>
@@ -28,4 +33,5 @@
         </div>
 
     </form>
-{%endblock%}
+
+{% endblock %}

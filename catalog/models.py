@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
+from account.models import CustomUser
 
 
 class Category(models.Model):
@@ -7,7 +9,6 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return reverse('catalog:select_category', args=[self.id])
-
 
     def __str__(self):
         return self.title
@@ -20,7 +21,7 @@ class Category(models.Model):
 class Product(models.Model):
     title = models.CharField(verbose_name='Название товара', max_length=20)
     image = models.ImageField(verbose_name='Главное фото',
-                              upload_to='main_photo/')
+                              upload_to='product_image/product_photo/main_photo/')
     category = models.ForeignKey(Category, verbose_name='Категория',
                                  on_delete=models.CASCADE,
                                  related_name='products')
@@ -45,43 +46,27 @@ class Gallery(models.Model):
                                 on_delete=models.CASCADE,
                                 related_name='images')
     image = models.ImageField(verbose_name='Фотография',
-                              upload_to='product_photo/')
+                              upload_to='product_image/product_photo/')
 
     class Meta:
         verbose_name = 'Фото к товару'
         verbose_name_plural = 'Фотографии к товару'
 
-# python manage.py migrate --run-syncdb
+# python manage.py migrate --run-syncdb http://127.0.0.1:8000/account/profile/
 
 
+class Comment(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,
+                                related_name='comment')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE,
+                             related_name='comment')
+    text = models.TextField(max_length=1000)
+    date_joined = models.DateTimeField(default=timezone.now)
+    edit_joined = models.DateTimeField(null=True)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+class Like(models.Model):
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE,
+                                related_name='like')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE,
+                             related_name='like')

@@ -16,17 +16,17 @@ class OrderForm(forms.Form):
     number_phone.widget.attrs.update({'class': 'form-control'})
     postcode.widget.attrs.update({'class': 'form-control'})
 
-    def save(self, cart):
+    def save(self, cart, user):
         my_order = Order(
             name=self.cleaned_data['name'],
             family_name=self.cleaned_data['family_name'],
             city=self.cleaned_data['city'],
             number_phone=self.cleaned_data['number_phone'],
             postcode=self.cleaned_data['postcode'],
-        )
+            total_cost=cart.get_total_price())
 
-        my_order.total_cost = cart.get_total_price()
-
+        if user.is_authenticated:
+            my_order.user = user
         my_order.save()
 
         for item in cart:
