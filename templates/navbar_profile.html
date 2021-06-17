@@ -15,7 +15,7 @@
     </ul>
 
     <div>
-        <a class="btn btn-dark" style="white-space: nowrap" href="{% url 'account:change_profile'%}">Change profile</a>
+        <a class="btn btn-dark" style="white-space: nowrap" href="{% url 'account:change_profile' user.id%}">Change profile</a>
         <a class="btn btn-dark" style="white-space: nowrap" href="{% url 'account:logout' %}">Log out</a>
     </div>
 </nav>

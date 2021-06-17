@@ -6,7 +6,7 @@ from catalog.models import Product
 class Cart:
     def __init__(self, request):
         self.session = request.session
-        self.cart = self.session.get('cart', {})
+        self.cart = request.session.get('cart', {})
 
     def add(self, product, quantity, update_quantity=False):
         product_id = str(product.id)

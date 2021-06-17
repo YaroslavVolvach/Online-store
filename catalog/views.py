@@ -7,45 +7,6 @@ from django.core.paginator import Paginator
 from account.models import CustomUser
 from django.utils import timezone
 
-# def product_list(request, category_id=False):
-#     if request.GET.get('search', ''):
-#         products = Product.objects.filter(
-#             Q(title__icontains=request.GET.get('search', ''))
-#             | Q(title__iexact=request.GET.get('search', '')))
-#     elif category_id:
-#         products = Product.objects.filter(
-#             category=get_object_or_404(Category, id=category_id))
-#     else:
-#         products = Product.objects.all()
-#
-#     page = Paginator(products, 8).get_page(request.GET.get('page', 1))
-#
-#     is_paginated = page.has_other_pages()
-#
-#     if page.has_previous():
-#         prev_url = '?page={}'.format(page.previous_page_number())
-#     else:
-#         prev_url = ''
-#
-#     if page.has_next():
-#         next_url = '?page={}'.format(page.next_page_number())
-#     else:
-#         next_url = ''
-#
-#     context = {'categories': Category.objects.all(),
-#                'products': page,
-#                'is_paginated': is_paginated,
-#                'prev_url': prev_url,
-#                'next_url': next_url}
-#
-#     if category_id:
-#         context['current_category'] = get_object_or_404(
-#             Category, id=category_id)
-#
-#         context['products'] = Product.objects.filter(category=category_id)
-#
-#     return render(request, 'catalog/product_list.html', context)
-
 
 class ProductList(ListView):
     model = Product
@@ -71,46 +32,49 @@ class ProductList(ListView):
 
 def product_detail(request, id):
     product = get_object_or_404(Product, id=id)
-    cart_product_form = CartAddProductForm(choices=product.quantity + 1)
 
     context = {'product': product,
-               'cart_product_form': cart_product_form,
+               'cart_product_form':  CartAddProductForm(choices=product.quantity + 1),
                'comments': product.comment.all()}
 
     return render(request, 'catalog/product_detail.html', context)
 
 
 def comment_create(request, user_id, product_id):
-    Comment.objects.create(product=get_object_or_404(Product, id=product_id),
-                           user=get_object_or_404(CustomUser, id=user_id),
-                           text=request.POST.get('text'))
+    if request.user.is_active:
+        Comment.objects.create(product=get_object_or_404(Product, id=product_id),
+                               user=get_object_or_404(CustomUser, id=user_id),
+                               text=request.POST.get('text'))
     return redirect('catalog:product_detail', id=product_id)
 
 
 def comment_edit(request, comment_id, product_id):
     edit_comment = get_object_or_404(Comment, id=comment_id)
-    edit_comment.text = request.POST.get('text')
-    edit_comment.edit_joined = timezone.now()
-    edit_comment.save()
+    if request.user is edit_comment.user:
+        edit_comment.text = request.POST.get('text')
+        edit_comment.edit_joined = timezone.now()
+        edit_comment.save()
     return redirect('catalog:product_detail', id=product_id)
 
 
 def comment_delete(request, comment_id, product_id):
-    get_object_or_404(Comment, id=comment_id).delete()
+    comment = get_object_or_404(Comment, id=comment_id)
+    if comment.user is request.user or request.user.is_staff:
+        comment.delete()
     return redirect('catalog:product_detail', id=product_id)
 
 
 def like(request, comment_id, product_id):
-    Like.objects.create(comment=get_object_or_404(Comment, id=comment_id),
-                        user=request.user)
+    if request.user.is_active:
+        Like.objects.create(comment=get_object_or_404(Comment, id=comment_id),
+                            user=request.user)
 
     return redirect('catalog:product_detail', id=product_id)
 
 
 def unlike(request, like_id, product_id):
-    print()
-    print(like_id)
-    print()
-    get_object_or_404(Like, id=like_id).delete()
+    like_ = get_object_or_404(Like, id=like_id)
+    if request.user is like.user:
+        like_.delete()
     return redirect('catalog:product_detail', id=product_id)
 

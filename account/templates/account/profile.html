@@ -16,7 +16,7 @@
                   </li>
 
                   <li>
-                      <a href="{% url 'account:change_email'%}" class="list-group-item list-group-item-action list-group-item"><h5 style="text-align: center"> Change email</h5></a>
+                      <a href="{% url 'account:change_email' user.id%}" class="list-group-item list-group-item-action list-group-item"><h5 style="text-align: center"> Change email</h5></a>
                   </li>
                   <li>
                       <a href="/" class="list-group-item list-group-item-action list-group-item"><h5 style="text-align: center">Unique name</h5></a>
@@ -34,7 +34,7 @@
                       <a href="/" class="list-group-item list-group-item-action list-group-item"><h5 style="text-align: center">Contacts</h5></a>
                   </li>
                   <li>
-                      <a href="{% url 'account:change_profile'%}" class="list-group-item list-group-item-action list-group-item"><h5 style="text-align: center">Change profile</h5></a>
+                      <a href="{% url 'account:change_profile' user.id%}" class="list-group-item list-group-item-action list-group-item"><h5 style="text-align: center">Change profile</h5></a>
                   </li>
                   <li>
                       <a href="{% url 'account:logout' %}" class="list-group-item list-group-item-action list-group-item" style="background: #212529;"><h5 style="color:white; text-align: center">Log out</h5></a>

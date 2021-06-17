@@ -11,7 +11,7 @@
            <div style="text-align:  center;"><strong>{{message}}</strong></div>
        </div>
    {%endif%}
-  <form action="{% url 'account:change_email'%}" method="post" >
+  <form action="{% url 'account:change_email' user.id%}" method="post" >
         {% csrf_token %}
         <div class="change_email">
             <div class="row">

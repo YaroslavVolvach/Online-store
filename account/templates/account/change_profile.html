@@ -5,12 +5,12 @@
 {%endblock%}
 {%block content%}
   {% include "navbar_profile.html" %}
-{%if message%}
-        <div class="container col-3" style="background: rgba(245, 35, 35, 0.5); border-radius: 10px; margin-bottom:-3%;margin-top: 3%;">
-            <div style="text-align:  center;"><strong>{{message}}</strong></div>
-        </div>
-{%endif%}
-<form action="{% url 'account:change_profile'%}" method="post" >
+
+<div class="container col-3" style="background: rgba(245, 35, 35, 0.5); border-radius: 10px; margin-bottom:-3%;margin-top: 3%;">
+    <div style="text-align:  center;"><strong>{{message}}</strong></div>
+</div>
+
+<form action="{% url 'account:change_profile' user.id%}" method="post">
         {% csrf_token %}
         <div class="change_profile">
             <div class="row">
