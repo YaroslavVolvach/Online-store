@@ -1,0 +1,20 @@
+<div class="input-group">
+  <input type="file" class="form-control" id="inputGroupFile04" name="{{ widget.name }}" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+    {% if widget.is_initial %}
+        <a href="{{ widget.value.url }}" class="btn btn-warning">Image</a>
+    {%else%}
+        <a class="btn btn-danger">No Image</a>
+    {%endif%}
+</div>
+
+{% if widget.is_initial %}
+
+    {% if not widget.required %}
+         <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}">
+         {% if widget.attrs.disabled %} disabled{% endif %}
+         <label for="{{ widget.checkbox_id }}">{{widget.clear_checkbox_label}}</label> <br>
+    {% endif %}
+
+{% endif %}
+
+

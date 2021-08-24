@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{%load static %}
+{%block style%}
+   <link rel="stylesheet" href="{% static 'css/catalog/category_admin.css' %}">
+{%endblock%}
+{%block content%}
+    {% include "navbar.html" %}
+<div class="container-fluid"><a href="{% url 'catalog:category_create'%}" class="btn btn-dark" style="background: #212529;">Category Create</a></div>
+    <div class="category_admin">
+            <div class="shadow">
+                <ul class="list-group" style="margin-left: -5px">
+                    {%for category in categories%}
+                    <li>
+                        <div class="list-group-item  list-group-item-action list-group-item-secondary">
+                            <h5 style="text-align: center"><em><strong style="">{{category.title}}</strong></em></h5>
+                             <div class="row justify-content-between">
+                                <a href="{% url 'catalog:category_update' category.id%}" class="btn btn-dark" style="background: #212529">Update</a>
+                                <a href="{% url 'catalog:category_delete' category.id%}" class="btn btn-dark" style="background: #212529">Delete</a>
+                             </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+        </div>
+    </div>
+{%endblock%}

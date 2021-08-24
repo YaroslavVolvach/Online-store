@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{%load static %}
+{%block style%}
+   <link rel="stylesheet" href="{% static 'css/catalog/product_create.css' %}">
+{%endblock%}
+{%block content%}
+    {% include "navbar.html" %}
+
+    <div class="container col-3" style="background: rgba(245, 35, 35, 0.5); border-radius: 10px; margin-bottom:-7%;margin-top: 3%; ">
+        <strong>{{product_creation_errors}}</strong>
+    </div>
+    <div class="container col-3" style="background: rgba(245, 35, 35, 0.5); border-radius: 10px; margin-bottom:-7%;margin-top: 5px; ">
+        <strong>{{gallery_errors}}</strong>
+    </div>
+
+    {%if product is not None%}
+        <form enctype="multipart/form-data" action="{% url 'catalog:product_update' product.id %}" method="post" >
+    {%else%}
+        <form enctype="multipart/form-data" action="{% url 'catalog:product_create'%}" method="post" >
+    {%endif%}
+        {% csrf_token %}
+        <div class="product_create">
+            <div class="row">
+                    {%for field in form%}
+                        {% if forloop.counter < 3 %}
+                            <div class="col-11" style="color:white; margin-left: 20px;">
+                                <p>{{field.label}} :</p>
+                            </div>
+                            <div class="col-11 mb-3" style="color:white; margin-left: 20px;">
+                                {{field}}
+                            </div>
+                        {%else%}
+                              <div class="col-6">
+                                  <div class="col-12" style="color:white; margin-left: 5px;">
+                                     <p>{{field.label}} :</p>
+                                  </div>
+                                  <div class="col-12 mb-3" style="color:white; margin-left: 5px;">
+                                       {{field}}
+                                  </div>
+                              </div>
+                        {%endif%}
+                    {%endfor%}
+                <div class="container" style="text-align: center"><h5 style="color: white; text-align: center">Images</h5></div>
+                <p>''</p>
+                   <div class="col-11" style="color:white; margin-left: 15px;">
+                       {{formset.management_form}}
+                       {% for form in formset %}
+                           {{form}}
+                       {% endfor %}
+                   </div>
+                 <div class="col-6">
+                    <input type="submit" class="form-control" name="save" style="background: #ffc107; border-radius: 10px;"
+                    value="Save" id="exampleInputEmail1" aria-describedby="emailHelp">
+                 </div>
+                <div class="col-6">
+                    <input type="submit" class="form-control" name="add" style="background: #ffc107; border-radius: 10px;"
+                    value="Save and add image"  aria-describedby="emailHelp">
+                </div>
+                <p>''</p>
+            </div>
+
+        </div>
+
+    </form>
+
+{%endblock%}

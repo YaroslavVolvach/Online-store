@@ -1,0 +1,9 @@
+li {
+  list-style-type: none;
+  text-align: center;
+}
+
+.container{
+    margin-top: 130px;
+    max-width:400px
+}

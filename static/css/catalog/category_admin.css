@@ -1,0 +1,15 @@
+.category_admin{
+         max-width: 400px;
+         height: 500px;
+         margin-top: 5%;
+         position: relative;
+         margin-left: auto;
+         margin-right: auto;
+         padding-right: 15px;
+         padding-left: 15px;
+         border-radius: 40px;
+         }
+
+li {
+    list-style-type: none;
+   }

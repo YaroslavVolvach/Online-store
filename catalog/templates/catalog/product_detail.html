@@ -5,7 +5,12 @@
 {%endblock%}
 {%block catalog%}
 
+
     <div class="container-fluid" >
+        {%if user.is_staff%}
+            <a href="{% url 'catalog:product_update' product.id %}" class="btn btn-dark" style="background: #212529">Update</a>
+            <a href="{% url 'catalog:product_delete' product.id %}" class="btn btn-dark" style="background: #212529">Delete</a>
+        {%endif%}
             <div class="row" style="margin-bottom: 5%;">
 
                  <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5 mt-3">
@@ -53,7 +58,6 @@
                                 <form action="{% url 'cart:cart_add' product.id %}" method="POST">{% csrf_token %}
                                      <div class="row ">
                                         <div class="col"><button type="input" class="btn btn-dark" style="background: #212529">В корзину</button></div>
-
                                         <div class="col-auto" style="margin-left: -30px">{% csrf_token %} {{ cart_product_form }}</div>
                                     </div>
                                 </form>

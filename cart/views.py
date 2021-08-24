@@ -21,8 +21,7 @@ def cart_add(request, product_id):
 
 
 def cart_remove(request, product_id):
-    cart = Cart(request)
-    cart.remove(str(product_id))
+    Cart(request).remove(str(product_id))
     messages.success(request, 'Удалено')
     return redirect('cart:cart_detail')
 

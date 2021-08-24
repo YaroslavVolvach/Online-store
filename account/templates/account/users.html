@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{%load static %}
+{%block style%}
+    <link rel="stylesheet" href="{% static 'css/custom_admin/users.css'%}">
+{%endblock%}
+{%block content%}
+    <div class="container">
+        <a href="{% url 'catalog:product_list' %}" style="margin-left: 75px"><em>Main page</em></a>
+        <a href="{% url 'account:profile' user.id %}" style="margin-left: 60px"><em>Profile</em></a>
+        <div class="shadow">
+            <ul class="list-group" style="margin-left: -5px">
+                {%for category in categories%}
+                <li>
+                    {%if category == current_category%}
+                        <a href="{% url 'account:users' category %}" class="list-group-item list-group-item-secondary "><em><strong>{{category}}</strong></em></a>
+                    {%else%}
+                        <a href="{% url 'account:users' category %}" class="list-group-item list-group-item-action ">{{category}}</a>
+                    {%endif%}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="card-deck mt-3" style='width:100%; margin-left: auto;'>
+    <div class="container-fluid">
+        <div class="row">
+             {%if message%}
+                 <div class="container col-3" style="background: rgb(50,205,50); border-radius: 10px; margin-bottom:-3%;margin-top: 3%;">
+                    <div style="text-align:  center;"><strong>{{message}}</strong></div>
+                </div>
+            {%endif%}
+            {% for person in persons %}
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card bg-light mb-3" style="max-width:rem 16;">
+                        <img  height="100%" src="{{person.main_image.url}}"  style="width:100%;" class="card-img-top" alt="изображение продукта">
+                           <div class="card-body" style='width:100%; height:100%;'>
+                              <h4 class="card-title">{{person.user_name}}</h4>
+                             <a href="{{person.get_absolute_url}}" class="btn btn-dark" style="background: #212529">Detail</a>
+                               {%if person.is_superuser == False and user.id != person.id%}
+                                  {%if person.is_active == True%}
+                                     {%if not person.is_staff or user.is_superuser%}
+                                         <a href="{% url 'account:blacklist' person.id current_category %}" class="btn btn-dark" style="background: #212529">ban</a>
+                                     {%else%}
+                                     {%if user.is_superuser%}
+                                         {%if person.is_staff%}
+                                             <a href="{% url 'account:permissions' person.id current_category %}" class="btn btn-dark" style="background: #212529">take away permissions</a>
+                                         {%else%}
+                                             <a href="{% url 'account:permissions' person.id current_category %}" class="btn btn-dark" style="background: #212529">give permissions</a>
+                                         {%endif%}
+                                     {%endif%}
+                                  {%endif%}
+                                  {%else%}
+                                     <a href="{% url 'account:blacklist' person.id  current_category %}" class="btn btn-dark" style="background: #212529">unban</a>
+                                  {%endif%}
+                               {%endif%}
+                           </div>
+                    </div>
+                 </div>
+           {% endfor %}
+        </div>
+    </div>
+    </div>
+{%endblock%}

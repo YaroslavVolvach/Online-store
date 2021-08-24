@@ -1,0 +1,12 @@
+.product_create {
+         background: #212529;
+         max-width: 650px;
+         min-height: 700px;
+         margin-top: 10%;
+         position: relative;
+         margin-left: auto;
+         margin-right: auto;
+         padding-right: 15px;
+         padding-left: 15px;
+         border-radius: 40px;
+         }

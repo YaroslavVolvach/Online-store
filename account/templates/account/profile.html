@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 {%load static %}
 {%block style%}
-    <link rel="stylesheet" href="{% static 'css/account/profile.css'%}">
+<link rel="stylesheet" href="{% static 'css/account/profile.css'%}"
+      xmlns="http://www.w3.org/1999/html">
     <link rel="stylesheet" href="{% static 'css/account/profile_media.css'%}">
 {%endblock%}
 {%block content%}
-<div class="container-fluid">
+  {%if user.is_staff%}
+      <div class="container-fluid" style="margin-top:10px;">
+          <a href="/admin" class="btn btn-dark" style="background: #212529">Admin</a>
+          <a href="{% url 'account:users' 'All users' %}" class="btn btn-dark" style="background: #212529">Users</a>
+      </div>
+  {%endif%}
   <div class="row">
       <div class="col-12 col-xl-3" id="menu">
           <div class="shadow">
@@ -19,9 +25,6 @@
                       <a href="{% url 'account:change_email' user.id%}" class="list-group-item list-group-item-action list-group-item"><h5 style="text-align: center"> Change email</h5></a>
                   </li>
                   <li>
-                      <a href="/" class="list-group-item list-group-item-action list-group-item"><h5 style="text-align: center">Unique name</h5></a>
-                  </li>
-                  <li>
                       <a href="{% url 'orders:order_list' user_id=user.id%}" class="list-group-item list-group-item-action list-group-item"><h5 style="text-align: center">My orders</h5></a>
                   </li>
                   <li>
@@ -29,9 +32,6 @@
                   </li>
                   <li>
                       <a href="/" class="list-group-item list-group-item-action list-group-item"><h5 style="text-align: center">Cart</h5></a>
-                  </li>
-                  <li>
-                      <a href="/" class="list-group-item list-group-item-action list-group-item"><h5 style="text-align: center">Contacts</h5></a>
                   </li>
                   <li>
                       <a href="{% url 'account:change_profile' user.id%}" class="list-group-item list-group-item-action list-group-item"><h5 style="text-align: center">Change profile</h5></a>
@@ -46,7 +46,7 @@
           </div>
     </div>
     <div class="col-12 col-md-4 col-lg-5 col-xl-3" id="main-image">
-        <img alt="Main user image"  src="{{user.main_image.url}}" style="width:85%; height:85%; border-radius: 15px;">
+        <img alt="Main user image"  src="{{person.main_image.url}}" style="width:85%; height:85%; border-radius: 15px;">
         <div class="row">
             <div class="col-6">
                 <form enctype="multipart/form-data" action="{% url 'account:change_image'%}" method="post">
@@ -57,7 +57,7 @@
                 </form>
             </div>
             <div class="col">
-                <a href="{% url 'account:remove_image' user.id %}" class="btn btn-dark" style="background: #212529;">Remove</a>
+                <a href="{% url 'account:remove_image' person.id %}" class="btn btn-dark" style="background: #212529;">Remove</a>
             </div>
         </div>
     </div>
@@ -66,8 +66,8 @@
                   <p></p>
                   <div class="row">
                       <div class="col-5 col-md-12 col-lg-4 col-xl-5"><h5>{{key|capfirst}}:</h5></div>
-                      {%if value == user.birth_date and value is not None%}
-                          <div class="col"><h5>{{value}}({{user.age}} years)</h5></div>
+                      {%if value == person.birth_date and value is not None%}
+                          <div class="col"><h5>{{value}}({{person.age}} years)</h5></div>
                       {%else%}
                           <div class="col"><h5>{{value}}</h5></div>
                       {%endif%}
@@ -76,6 +76,5 @@
     </div>
 
   </div>
-</div>
 
 {% endblock %}

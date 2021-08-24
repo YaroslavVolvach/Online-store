@@ -21,10 +21,12 @@ class Category(models.Model):
 class Product(models.Model):
     title = models.CharField(verbose_name='Название товара', max_length=20)
     image = models.ImageField(verbose_name='Главное фото',
-                              upload_to='product_image/product_photo/main_photo/')
+                              upload_to='product_image/product_photo/main_photo/',
+                              default='product_image/default_image/default-no-image.png')
     category = models.ForeignKey(Category, verbose_name='Категория',
                                  on_delete=models.CASCADE,
-                                 related_name='products')
+                                 related_name='products',
+                                 null=True)
     description = models.TextField(verbose_name='Описание товара',
                                    max_length=1000)
     price = models.PositiveIntegerField(verbose_name='Стоимость')
@@ -42,17 +44,18 @@ class Product(models.Model):
 
 
 class Gallery(models.Model):
-    product = models.ForeignKey(Product, verbose_name='Продукт',
+    product = models.ForeignKey(Product, null=True, verbose_name='Продукт',
                                 on_delete=models.CASCADE,
                                 related_name='images')
     image = models.ImageField(verbose_name='Фотография',
                               upload_to='product_image/product_photo/')
 
+    def __str__(self):
+        return str(self.image)
+
     class Meta:
         verbose_name = 'Фото к товару'
         verbose_name_plural = 'Фотографии к товару'
-
-# python manage.py migrate --run-syncdb http://127.0.0.1:8000/account/profile/
 
 
 class Comment(models.Model):

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{%load static %}
+{%block style%}
+   <link rel="stylesheet" href="{% static 'css/catalog/category_create.css' %}">
+{%endblock%}
+{%block content%}
+    {% include "navbar.html" %}
+
+    <div class="container col-3" style="background: rgba(245, 35, 35, 0.5); border-radius: 10px; margin-bottom:-7%;margin-top: 3%; ">
+        <strong>{{form.errors}}</strong>
+    </div>
+    {% if up_category %}
+        <form enctype="multipart/form-data" action="{% url 'catalog:category_update' up_category.id%}" method="post">
+    {%else%}
+        <form enctype="multipart/form-data" action="{% url 'catalog:category_create'%}" method="post">
+    {%endif%}
+            {% csrf_token %}
+        <div class="category_create">
+            <h5 style="color:white; margin-left: 5px">{{form.title.label}}:</h5>
+            {{form.title}}
+            {% if up_category %}
+                 <input type="submit" class="form-control" style="background: #ffc107; border-radius: 10px; margin-top: 10px"
+                        value="Save"  aria-describedby="emailHelp">
+             {%else%}
+                 <input type="submit" class="form-control" style="background: #ffc107; border-radius: 10px; margin-top: 10px"
+                         value="Update"  aria-describedby="emailHelp">
+            {%endif%}
+        </div>
+
+    </form>
+
+{%endblock%}

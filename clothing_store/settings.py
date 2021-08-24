@@ -35,14 +35,16 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'account.apps.AccountConfig',
 
-    # Django applications
+    # libraries
+    'django_countries',
+
+    # Django default applications
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_countries'
 
 ]
 
@@ -62,8 +64,7 @@ TEMPLATES = [
 
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,10 +83,23 @@ WSGI_APPLICATION = 'clothing_store.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+'''
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Store_db',
+        'USER': 'postgres',
+        'PASSWORD': '*qwerty#',
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
     }
 }
 
@@ -112,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru-RU'
 
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
 

@@ -1,12 +1,12 @@
-.change_profile {
+.category_create {
          background: #212529;
-         max-width: 490px;
-         height: 530px;
+         max-width: 400px;
+         height: 130px;
+         margin-top: 25%;
          position: relative;
-         margin-top: 7%;
          margin-left: auto;
          margin-right: auto;
          padding-right: 15px;
          padding-left: 15px;
          border-radius: 40px;
-        }
+         }

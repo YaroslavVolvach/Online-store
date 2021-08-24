@@ -1,30 +1,41 @@
 {%extends 'catalog/base_catalog.html'%}
 
 {%block catalog%}
-    <div class="container-fluid">
+
+<div class="container-fluid" xmlns="http://www.w3.org/1999/html">
+        {%if user.is_staff%}
+            <a href="{% url 'catalog:product_create'%}" class="btn btn-dark" style="background: #212529">Product Create</a>
+            <a href="{% url 'catalog:category_create'%}" class="btn btn-dark" style="background: #212529">Category Create</a>
+        {%endif%}
+        <h5>{{visit}}</h5>
         <div class="row">
                 <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-2 mt-3">
                     <div class="shadow">
                         <ul class="list-group" style="margin-left: -5px">
                             {%if current_category%}
                                 <li>
-                                    <a href="/" class="list-group-item list-group-item-action list-group-item">Все категории</a>
+                                    <a href="/" class="list-group-item list-group-item-action list-group-item"><h6 style="text-align: center">All categories</h6></a>
                                 </li>
                             {%else%}
                                 <li >
-                                    <a href="/" class="list-group-item list-group-item-action list-group-item-secondary"><em><strong>Все категории</strong></em></a>
+                                    <a href="/" class="list-group-item list-group-item-action list-group-item-secondary"><h5 style="text-align: center"><em><strong>All categories</strong></em></h5></a>
                                 </li>
                             {%endif%}
 
                             {%for category in categories%}
                                     <li>
                                         {%if category == current_category%}
-                                            <a href="{{category.get_absolute_url}}" class="list-group-item list-group-item-secondary "><em><strong>{{category.title}}</strong></em></a>
+                                        <a href="{{category.get_absolute_url}}" class="list-group-item list-group-item-secondary "><h5 style="text-align: center"><em><strong style="">{{category.title}}</strong></em></h5></a>
                                         {%else%}
-                                            <a href="{{category.get_absolute_url}}" class="list-group-item list-group-item-action ">{{category.title}}</a>
+                                        <a href="{{category.get_absolute_url}}" class="list-group-item list-group-item-action "><h6 style="text-align: center">{{category.title}}</h6></a>
                                         {%endif%}
                                     </li>
                             {% endfor %}
+                            {%if user.is_staff%}
+                                <li>
+                                    <a href="{% url 'catalog:category_admin' %}" class="list-group-item list-group-item-action list-group-item" style="background: #212529;"><h5 style="color:white; text-align: center">Category administration</h5></a>
+                                </li>
+                            {%endif%}
                         </ul>
                     </div>
                 </div>
@@ -54,7 +65,11 @@
                                               <div><strong><p class="text-danger">Нет в наличии</p></strong></div>
                                           {% endif %}
                                       </div>
-                                      <a href="{{product.get_absolute_url}}" class="btn btn-dark" style="background: #212529">Подробнее</a>
+                                      <a href="{{product.get_absolute_url}}" class="btn btn-dark" style="background: #212529">Detail</a>
+                                      {%if user.is_staff%}
+                                          <a href="{% url 'catalog:product_update' product.id %}" class="btn btn-dark" style="background: #212529">Update</a>
+                                          <a href="{% url 'catalog:product_delete' product.id %}" class="btn btn-dark" style="background: #212529">Delete</a>
+                                      {%endif%}
                                   </div>
                           </div>
                       </div>
